@@ -1,8 +1,9 @@
+// AdminLogin.jsx
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function AdminLogin({ setToken }) {
+export default function AdminLogin() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -14,17 +15,19 @@ export default function AdminLogin({ setToken }) {
     e.preventDefault();
     try {
       // Login request
-      const res = await axios.post("https://e-commerce-website-tpxn.onrender.com/admin/login", form);
+      const res = await axios.post(
+        "https://e-commerce-website-tpxn.onrender.com/admin/login",
+        form
+      );
 
       // Token ko localStorage me save karo
       const token = res.data.token;
       localStorage.setItem("adminToken", token);
-      setToken(token);
 
-      // Axios ke default headers me token set kar do
+      // Axios default headers me token set kar do
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-      // Direct dashboard pe navigate
+      // Dashboard pe navigate
       navigate("/admin/dashboard");
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
