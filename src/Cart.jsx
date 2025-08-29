@@ -183,7 +183,7 @@ function Cart({ cart, setCart, user }) {
               className="flex flex-col md:flex-row items-center gap-4 border rounded-xl p-4 shadow-lg hover:shadow-2xl transition-shadow duration-300"
             >
               <img
-                src={item.image.startsWith("http") ? item.image : `https://e-commerce-website-tpxn.onrender.com${item.image}`}
+                 src={item.image.startsWith("http") ? item.image : `${process.env.REACT_APP_API_URL}/uploads/${item.image}`}
                 alt={item.title}
                 className="w-28 h-28 object-contain rounded-lg"
               />

@@ -14,7 +14,7 @@ export default function AdminLogin({ setToken }) {
     e.preventDefault();
     try {
       // Login request
-      const res = await axios.post("http://localhost:5000/admin/login", form);
+      const res = await axios.post("https://e-commerce-website-tpxn.onrender.com/admin/login", form);
 
       // Token ko localStorage me save karo
       const token = res.data.token;

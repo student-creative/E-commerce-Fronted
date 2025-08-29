@@ -10,7 +10,7 @@ export default function AdminOrders() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/order/${userId}`)
+    fetch(`https://e-commerce-website-tpxn.onrender.com/order/${userId}`)
       .then((res) => res.json())
       .then((data) => {
         setOrders(data.orders || []);
@@ -24,7 +24,7 @@ export default function AdminOrders() {
 
   const handleStatusChange = async (orderId, newStatus) => {
     try {
-      const res = await fetch(`http://localhost:5000/order/${orderId}/status`, {
+      const res = await fetch(`https://e-commerce-website-tpxn.onrender.com/order/${orderId}/status`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: newStatus }),

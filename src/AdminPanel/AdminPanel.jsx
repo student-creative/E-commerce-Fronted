@@ -10,7 +10,7 @@ export default function AdminPanel() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const res = await fetch("http://localhost:5000/product/api");
+        const res = await fetch("https://e-commerce-website-tpxn.onrender.com/product/api");
         const data = await res.json();
         setProducts(Array.isArray(data) ? data : []);
       } catch (err) {
@@ -33,14 +33,14 @@ export default function AdminPanel() {
     formData.append("image", form.image);
 
     try {
-      await fetch("http://localhost:5000/product/admin", {
+      await fetch("https://e-commerce-website-tpxn.onrender.com/product/admin", {
         method: "POST",
         body: formData
       });
       setForm({ id: "", title: "", description: "", price: "", image: null });
 
       // Refresh products
-      const res = await fetch("http://localhost:5000/product/api");
+      const res = await fetch("https://e-commerce-website-tpxn.onrender.com/product/api");
       const data = await res.json();
       setProducts(Array.isArray(data) ? data : []);
     } catch (err) {
@@ -110,7 +110,7 @@ export default function AdminPanel() {
           >
             <div className="h-56 flex items-center justify-center bg-gray-50 overflow-hidden rounded-t-2xl">
               <img
-                src={`http://localhost:5000${p.image}`}
+                src={`https://e-commerce-website-tpxn.onrender.com${p.image}`}
                 alt={p.title}
                 className="h-full object-contain transition-transform duration-500 hover:scale-105"
               />

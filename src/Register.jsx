@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 const API_URL = process.env.REACT_APP_API_URL || "https://e-commerce-website-tpxn.onrender.com";
-
 function Register({ setUser, redirectPath = "/", setCart }) {
   const location = useLocation();
   const navigate = useNavigate();

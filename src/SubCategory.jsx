@@ -79,7 +79,7 @@ export default function SubCategory({ cart, setCart }) {
         <div className="grid md:grid-cols-2 gap-10 bg-white rounded-xl shadow-md p-6 mb-16">
        <div className="flex justify-center items-center">
   <img
-    src={product.image}
+    src={`${process.env.REACT_APP_API_URL}/uploads/${product.image}`}
     alt={product.title}
     className="max-w-md w-full max-h-[400px] object-contain rounded-lg"
   />
@@ -111,7 +111,7 @@ export default function SubCategory({ cart, setCart }) {
                   className="bg-white rounded-lg shadow-md hover:shadow-lg transition p-4 flex flex-col justify-between h-full"
                 >
                   <img
-                    src={p.image}
+                    src={`${process.env.REACT_APP_API_URL}/uploads/${p.image}`}
                     alt={p.title}
                     className="w-full h-48 object-contain mb-4 rounded"
                   />
