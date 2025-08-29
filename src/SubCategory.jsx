@@ -111,7 +111,7 @@ export default function SubCategory({ cart, setCart }) {
                   className="bg-white rounded-lg shadow-md hover:shadow-lg transition p-4 flex flex-col justify-between h-full"
                 >
                   <img
-                    src={`${process.env.REACT_APP_API_URL}/uploads/${p.image}`}
+                    src={`${process.env.REACT_APP_API_URL}/img/${product.image}`}
                     alt={p.title}
                     className="w-full h-48 object-contain mb-4 rounded"
                   />
