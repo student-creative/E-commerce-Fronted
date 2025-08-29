@@ -8,6 +8,9 @@ export default function Navbar({ cart = [], user, setUser, setCart }) {
   const [suggestions, setSuggestions] = useState([]);
   const navigate = useNavigate();
 
+  // ✅ Use localStorage fallback for refresh-safe login
+  const currentUser = user || JSON.parse(localStorage.getItem("user"));
+
   const handleSearchChange = async (e) => {
     const query = e.target.value;
     setSearchTerm(query);
@@ -28,8 +31,6 @@ export default function Navbar({ cart = [], user, setUser, setCart }) {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-
-
     setUser(null);
     setCart([]);
     navigate("/");
@@ -41,6 +42,7 @@ export default function Navbar({ cart = [], user, setUser, setCart }) {
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0 text-2xl font-bold text-indigo-600">ShopEase</div>
 
+          {/* Search Input */}
           <div className="hidden md:block flex-1 px-4 relative">
             <input
               type="text"
@@ -53,14 +55,18 @@ export default function Navbar({ cart = [], user, setUser, setCart }) {
               <div className="absolute bg-white border w-full mt-1 rounded shadow-lg z-50 max-h-80 overflow-y-auto">
                 {suggestions.map((item) => (
                   <div
-                    key={item.id}
+                    key={item.id || item._id}
                     className="p-2 hover:bg-indigo-100 cursor-pointer flex items-center gap-2"
-                    onClick={() => navigate(`/product/${item.id}`)}
+                    onClick={() => navigate(`/product/${item.id || item._id}`)}
                   >
-                    <img src={item.image} alt={item.title} className="w-12 h-12 object-contain rounded" />
+                    <img
+                      src={`https://e-commerce-website-tpxn.onrender.com${item.image}`}
+                      alt={item.title}
+                      className="w-12 h-12 object-contain rounded"
+                    />
                     <div className="flex flex-col">
                       <span className="font-semibold text-gray-700">{item.title}</span>
-                      <span className="text-sm text-gray-500">{item.description.substring(0, 30)}...</span>
+                      <span className="text-sm text-gray-500">{item.description?.substring(0, 30)}...</span>
                       <span className="text-green-600 font-semibold">₹{item.price}</span>
                     </div>
                   </div>
@@ -69,6 +75,7 @@ export default function Navbar({ cart = [], user, setUser, setCart }) {
             )}
           </div>
 
+          {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
             <Link to="/" className="text-gray-700 hover:text-indigo-600">Shop</Link>
             <Link to="/category" className="text-gray-700 hover:text-indigo-600">Categories</Link>
@@ -85,7 +92,7 @@ export default function Navbar({ cart = [], user, setUser, setCart }) {
               )}
             </div>
 
-            {user ? (
+            {currentUser ? (
               <button
                 onClick={handleLogout}
                 className="px-4 py-1 border border-red-600 text-red-600 rounded-full hover:bg-red-600 hover:text-white transition"
@@ -110,6 +117,7 @@ export default function Navbar({ cart = [], user, setUser, setCart }) {
             )}
           </div>
 
+          {/* Mobile Menu Toggle */}
           <div className="md:hidden">
             <button onClick={() => setMenuOpen(!menuOpen)}>
               {menuOpen ? <XMarkIcon className="h-6 w-6 text-gray-700" /> : <Bars3Icon className="h-6 w-6 text-gray-700" />}
@@ -118,22 +126,22 @@ export default function Navbar({ cart = [], user, setUser, setCart }) {
         </div>
       </div>
 
+      {/* Mobile Menu */}
       {menuOpen && (
         <div className="md:hidden bg-white border-t border-gray-200">
           <div className="px-4 py-2 space-y-2">
-         <Link to="/" className="text-gray-700 hover:text-indigo-600">Shop</Link>
+            <Link to="/" className="text-gray-700 hover:text-indigo-600">Shop</Link>
             <Link to="/category" className="text-gray-700 hover:text-indigo-600">Categories</Link>
             <Link to="/about" className="text-gray-700 hover:text-indigo-600">About</Link>
             <Link to="/contact" className="text-gray-700 hover:text-indigo-600">Contact</Link>
             <Link to="/orders" className="text-gray-700 hover:text-indigo-600">Orders</Link>
-
 
             <div className="flex items-center space-x-2">
               <ShoppingCartIcon className="h-6 w-6 text-gray-700" />
               <span className="text-gray-700">Cart ({cart.length})</span>
             </div>
 
-            {user ? (
+            {currentUser ? (
               <button
                 onClick={handleLogout}
                 className="w-full px-4 py-2 border border-red-600 text-red-600 rounded-full hover:bg-red-600 hover:text-white transition"

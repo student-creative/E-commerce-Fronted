@@ -1,6 +1,7 @@
+// App.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 
 import Register from "./Register";
 import Home from "./Home";
@@ -21,6 +22,16 @@ import AdminLogin from "./AdminPanel/AdminLogin";
 import AdminDashboard from "./AdminPanel/AdminDashboard";
 import AdminPanel from "./AdminPanel/AdminPanel";
 import AdminOrders from "./AdminPanel/AdminOrders";
+
+// Layout component for general user routes
+function Layout({ cart, user, setUser, setCart }) {
+  return (
+    <>
+      <Navbar cart={cart} user={user} setUser={setUser} setCart={setCart} />
+      <Outlet />
+    </>
+  );
+}
 
 function App() {
   // ✅ User login persist
@@ -53,6 +64,8 @@ function App() {
     const token = localStorage.getItem("token");
     if (token) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    } else {
+      delete axios.defaults.headers.common["Authorization"];
     }
   }, []);
 
@@ -60,30 +73,22 @@ function App() {
     <OrderProvider>
       <Routes>
         {/* ==================== General routes (with Navbar) ==================== */}
-        <Route
-          path="/*"
-          element={
-            <>
-              <Navbar cart={cart} user={user} setUser={setUser} setCart={setCart} />
-              <Routes>
-                <Route path="/" element={<Home cart={cart} setCart={setCart} />} />
-                <Route path="/product/:id" element={<ProductDetails cart={cart} setCart={setCart} />} />
-                <Route path="/cart" element={<Cart cart={cart} setCart={setCart} user={user} />} />
-                <Route path="/orders" element={<Orders />} />
-                <Route path="/payment" element={<Payment />} />
-                <Route path="/category" element={<Category />} />
-                <Route path="/category/:id" element={<CategoryDetail />} />
-                <Route path="/subcategory/:categoryId/:productId" element={<SubCategory cart={cart} setCart={setCart} />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route
-                  path="/register"
-                  element={<Register setUser={setUser} redirectPath="/cart" setCart={setCart} />}
-                />
-              </Routes>
-            </>
-          }
-        />
+        <Route element={<Layout cart={cart} user={user} setUser={setUser} setCart={setCart} />}>
+          <Route path="/" element={<Home cart={cart} setCart={setCart} />} />
+          <Route path="/product/:id" element={<ProductDetails cart={cart} setCart={setCart} />} />
+          <Route path="/cart" element={<Cart cart={cart} setCart={setCart} user={user} />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/category" element={<Category />} />
+          <Route path="/category/:id" element={<CategoryDetail />} />
+          <Route path="/subcategory/:categoryId/:productId" element={<SubCategory cart={cart} setCart={setCart} />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route
+            path="/register"
+            element={<Register setUser={setUser} redirectPath="/cart" setCart={setCart} />}
+          />
+        </Route>
 
         {/* ==================== Admin routes (without Navbar) ==================== */}
         <Route path="/admin" element={<Navigate to="/admin/login" />} />
