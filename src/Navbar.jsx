@@ -121,10 +121,12 @@ export default function Navbar({ cart = [], user, setUser, setCart }) {
       {menuOpen && (
         <div className="md:hidden bg-white border-t border-gray-200">
           <div className="px-4 py-2 space-y-2">
-            <a href="#" className="block text-gray-700 hover:text-indigo-600">Shop</a>
-            <a href="#" className="block text-gray-700 hover:text-indigo-600">Categories</a>
-            <a href="#" className="block text-gray-700 hover:text-indigo-600">Offers</a>
-            <a href="#" className="block text-gray-700 hover:text-indigo-600">Contact</a>
+         <Link to="/" className="text-gray-700 hover:text-indigo-600">Shop</Link>
+            <Link to="/category" className="text-gray-700 hover:text-indigo-600">Categories</Link>
+            <Link to="/about" className="text-gray-700 hover:text-indigo-600">About</Link>
+            <Link to="/contact" className="text-gray-700 hover:text-indigo-600">Contact</Link>
+            <Link to="/orders" className="text-gray-700 hover:text-indigo-600">Orders</Link>
+
 
             <div className="flex items-center space-x-2">
               <ShoppingCartIcon className="h-6 w-6 text-gray-700" />
