@@ -16,13 +16,14 @@ export default function AdminPanel() {
   const navigate = useNavigate();
 
   // Check token on mount
-  useEffect(() => {
-    const token = localStorage.getItem("adminToken");
-    if (!token) navigate("/admin/login");
-    else axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+useEffect(() => {
+  const token = localStorage.getItem("adminToken");
+  if (!token) navigate("/admin/login");
+  else axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-    fetchProducts();
-  }, []);
+  fetchProducts();
+}, [navigate]);
+
 
   const fetchProducts = async () => {
     try {
