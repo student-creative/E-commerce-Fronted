@@ -32,7 +32,7 @@ export default function Category() {
               {/* Category Image */}
               <div className="w-full h-64 overflow-hidden rounded-t-3xl">
                 <img
-                  src={`${process.env.REACT_APP_API_URL}/img/${product.image}`}
+                  src={`${process.env.REACT_APP_API_URL}/img/${cat.image}`}
                   alt={cat.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
