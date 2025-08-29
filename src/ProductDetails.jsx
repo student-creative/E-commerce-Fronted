@@ -34,7 +34,7 @@ function ProductDetails({ cart, setCart }) {
     }
 
     try {
-      const res = await fetch("https://e-commerce-website-tpxn.onrender.com/add", {
+      const res = await fetch("https://e-commerce-website-tpxn.onrender.com/cart/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

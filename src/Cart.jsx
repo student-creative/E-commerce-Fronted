@@ -184,7 +184,7 @@ function Cart({ cart, setCart, user }) {
             >
               <img
                  src={item.image.startsWith("http") ? item.image : `${process.env.REACT_APP_API_URL}/uploads/${item.image}`}
-                alt={item.title}
+                alt={item.title}  
                 className="w-28 h-28 object-contain rounded-lg"
               />
               <div className="flex-1 flex flex-col gap-2">
