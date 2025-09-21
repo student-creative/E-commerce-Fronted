@@ -142,7 +142,7 @@ function ProductDetails({ cart, setCart }) {
                   className="border rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center bg-white"
                 >
                   <img
-                    src={`https://e-commerce-website-tpxn.onrender.com${item.image}`}
+                    src={item.image}
                     alt={item.title}
                     className="w-full h-40 object-contain rounded-lg mb-2"
                   />
