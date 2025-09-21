@@ -143,7 +143,7 @@ useEffect(() => {
           >
             <div className="h-56 flex items-center justify-center bg-gray-50 overflow-hidden rounded-t-2xl">
               <img
-                src={p.image}
+                src={`https://e-commerce-website-tpxn.onrender.com/img/${p.image}`}
                 alt={p.title}
                 className="h-full object-contain transition-transform duration-500 hover:scale-105"
               />
