@@ -47,7 +47,7 @@ export default function CategoryDetail() {
               >
                 <div className="w-full h-52 overflow-hidden">
                   <img
-                    src={`https://e-commerce-website-tpxn.onrender.com/img/${p.image}`}
+                    src={p.image}
                     alt={p.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />

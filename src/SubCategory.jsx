@@ -79,7 +79,7 @@ export default function SubCategory({ cart, setCart }) {
         <div className="grid md:grid-cols-2 gap-10 bg-white rounded-xl shadow-md p-6 mb-16">
        <div className="flex justify-center items-center">
   <img
-    src={`https://e-commerce-website-tpxn.onrender.com/img/${product.image}`}
+    src={product.image}
     alt={product.title}
     className="max-w-md w-full max-h-[400px] object-contain rounded-lg"
   />
