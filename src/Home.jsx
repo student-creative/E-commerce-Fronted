@@ -42,7 +42,7 @@ function Home({ cart, setCart }) {
               {/* Product Image */}
               <div className="relative w-full h-72 flex justify-center items-center bg-gray-50 overflow-hidden">
                 <img
-                  src={product.image}
+                  src={`https://e-commerce-website-tpxn.onrender.com/img/${p.image}`}
                   alt={product.title}
                   className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
                 />

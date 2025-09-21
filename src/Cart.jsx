@@ -187,7 +187,7 @@ function Cart({ cart, setCart, user }) {
     item.image
       ? item.image.startsWith("http")
         ? item.image
-        : `https://e-commerce-website-tpxn.onrender.com/uploads/${item.image}`
+        : `https://e-commerce-website-tpxn.onrender.com/img/${item.image}`
       : "/placeholder.jpg"
   }
                 alt={item.title}  

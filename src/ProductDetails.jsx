@@ -81,7 +81,7 @@ function ProductDetails({ cart, setCart }) {
           <div className="md:w-1/3 flex justify-center items-start">
             <div className="border rounded-lg p-4 bg-white shadow hover:shadow-lg transition">
               <img
-                src={`https://e-commerce-website-tpxn.onrender.com/uploads/${product.image}`}
+                src={`https://e-commerce-website-tpxn.onrender.com/img/${product.image}`}
                 alt={product.title}
                 className="w-full h-80 object-contain"
               />

@@ -11,7 +11,7 @@ useEffect(() => {
   if (!userId) return;
 
   setLoading(true);
-  fetch(`https://e-commerce-website-tpxn.onrender.com/${userId}`)
+  fetch(`https://e-commerce-website-tpxn.onrender.com/order/${userId}`)
     .then((res) => res.json())
     .then((data) => {
       setOrders(data.orders || []);
@@ -30,7 +30,7 @@ useEffect(() => {
       if (!window.confirm("Are you sure you want to cancel this order?")) return;
 
       try {
-        const res = await fetch(`https://e-commerce-website-tpxn.onrender.com/${orderId}`, {
+        const res = await fetch(`https://e-commerce-website-tpxn.onrender.com/order/${orderId}`, {
           method: "DELETE",
         });
         const data = await res.json();
